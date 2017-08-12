@@ -47,7 +47,7 @@ class MovieEventHandler(PatternMatchingEventHandler):
 
     def on_created(self, event):
         server_name = os.environ["PLEX_SERVER_NAME"]
-        webhook_url = os.environ["PLEX_WEBHOOK"]
+        webhook_url = os.environ["SLACK_WEBHOOK"]
         movie_name = os.path.basename(event.src_path)
         movie_name = movie_name.split('.')[0]
         metadata = self.get_metadata(movie_name)
@@ -80,8 +80,8 @@ def check_environ():
     if os.environ["PLEX_SERVER_NAME"] == None:
         print "Please set 'PLEX_SERVER_NAME'"
         missing = True
-    if os.environ["PLEX_WEBHOOK"] == None:
-        print "Please set 'PLEX_WEBHOOK'"
+    if os.environ["SLACK_WEBHOOK"] == None:
+        print "Please set 'SLACK_WEBHOOK'"
         missing = True
     if os.environ["THEMOVIEDB_API_KEY"] == None:
         print "Please set 'THEMOVIEDB_API_KEY'"
